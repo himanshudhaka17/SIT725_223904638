@@ -4,14 +4,11 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+const mainRoutes = require('./routes/routes');
+app.use('/', mainRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });

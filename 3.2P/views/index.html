@@ -1,14 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home</title>
-    <link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3.2P</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1>SIT725 Task 3.2P</h1>
-    <p>Name: Himanshu Dhaka</p>
-    <p>ID: 223904638</p>
 
-    <a href="/users">Go to Users Page</a>
+  <nav>
+    <div class="nav-wrapper blue darken-2">
+      <a href="/" class="brand-logo brand-area">
+        <img src="/images/logo.png" alt="Logo" class="logo-img">
+        SIT725
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="https://www.deakin.edu.au" target="_blank">Deakin</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h3 class="center-align">SIT725 Task 3.2P</h3>
+    <p class="center-align">Name: Himanshu Dhaka</p>
+    <p class="center-align">Student ID: 223904638</p>
+
+    <div class="center-align section">
+      <a class="waves-effect waves-light btn modal-trigger" href="#info-modal">Open Modal</a>
+    </div>
+
+    <div class="row" id="card-section"></div>
+  </div>
+
+  <div id="info-modal" class="modal">
+    <div class="modal-content">
+      <h4>Workshop Requirement</h4>
+      <p>This modal is included as part of the corrected Week 3 workshop-style interface.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/script.js"></script>
 </body>
 </html>
