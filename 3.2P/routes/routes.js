@@ -1,31 +1,46 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const Item = require('../models/item');
 
-const items = [
-  {
-    title: 'Smart Feature 1',
-    image: 'https://picsum.photos/300/200?random=1',
-    description: 'This card is loaded from the Express backend using an API route.'
-  },
-  {
-    title: 'Smart Feature 2',
-    image: 'https://picsum.photos/300/200?random=2',
-    description: 'This demonstrates dynamic card rendering using fetch() in the frontend.'
-  },
-  {
-    title: 'Smart Feature 3',
-    image: 'https://picsum.photos/300/200?random=3',
-    description: 'This page also includes a navbar, image logo, external link, cards, and modal.'
-  }
-];
-
+// Home page
 router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/index.html'));
+    res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 
-router.get('/api/items', (req, res) => {
-  res.json(items);
+// API: get items from MongoDB
+router.get('/api/items', async (req, res) => {
+    try {
+        const items = await Item.find();
+        res.json(items);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+// API: insert sample data (run once)
+router.get('/api/add', async (req, res) => {
+    await Item.deleteMany({});
+
+    await Item.insertMany([
+        {
+            title: "Feature 1",
+            image: "https://picsum.photos/300/200?1",
+            description: "Loaded from MongoDB"
+        },
+        {
+            title: "Feature 2",
+            image: "https://picsum.photos/300/200?2",
+            description: "Database connected successfully"
+        },
+        {
+            title: "Feature 3",
+            image: "https://picsum.photos/300/200?3",
+            description: "Express + MongoDB integration"
+        }
+    ]);
+
+    res.send("Data inserted!");
 });
 
 module.exports = router;
