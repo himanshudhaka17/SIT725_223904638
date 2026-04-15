@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books Catalog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .book {
+      background: white;
+      padding: 15px;
+      margin: 10px auto;
+      border-radius: 8px;
+      max-width: 700px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .book h3 {
+      margin: 0 0 8px 0;
+    }
+
+    .book p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>📚 Books Catalog</h1>
+  <div id="bookList"></div>
+
+  <script>
+    async function loadBooks() {
+      try {
+        const response = await fetch('/api/books');
+        const result = await response.json();
+
+        const bookList = document.getElementById('bookList');
+        bookList.innerHTML = '';
+
+        result.data.forEach(book => {
+          const div = document.createElement('div');
+          div.className = 'book';
+          div.innerHTML = `
+            <h3>${book.title}</h3>
+            <p><strong>Author:</strong> ${book.author}</p>
+          `;
+          bookList.appendChild(div);
+        });
+      } catch (error) {
+        console.error('Error loading books:', error);
+      }
+    }
+
+    loadBooks();
+  </script>
+</body>
+</html>
